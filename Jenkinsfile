@@ -5,6 +5,7 @@ pipeline {
     tools {
         jdk 'JDK'
         maven 'Maven'
+        nodejs 'NodeJS'
         // Installs the standalone scanner (useful if not using Maven for analysis)
         // sonarQubeScanner 'SonarQube Scanner'
     }

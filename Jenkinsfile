@@ -73,7 +73,7 @@ pipeline {
     post {
         always {
             // Clean up workspace to save disk space
-            cleanWs()
+            sh 'rm -rf *'
         }
     }
 }

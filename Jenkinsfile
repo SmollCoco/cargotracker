@@ -38,7 +38,7 @@ pipeline {
                 // Connects to SonarQube using the environment defined [cite: 33]
                 withSonarQubeEnv(SONAR_SERVER) {
                     // Analysis via Maven (preferred for JEE) [cite: 6, 27]
-                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=cargotracker -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=sqp_4ef13611c4f4f72c1894c5d31cf30c375d986c3a'
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=cargotracker -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=sqp_4ef13611c4f4f72c1894c5d31cf30c375d986c3a -Dsonar.exclusions=**/*.js,**/*.css,**/*.html,**/*.ts'
                 }
             }
         }

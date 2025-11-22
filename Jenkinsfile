@@ -5,6 +5,7 @@ pipeline {
     tools {
         jdk 'JDK'
         maven 'Maven'
+        docker 'Docker'
     }
 
     environment {
@@ -42,15 +43,6 @@ pipeline {
                 }
             }
         }
-
-        // stage('Quality Gate') {
-        //     steps {
-        //         // Pauses pipeline until SonarQube returns quality status [cite: 34]
-        //         timeout(time: 5, unit: 'MINUTES') {
-        //             waitForQualityGate abortPipeline: true
-        //         }
-        //     }
-        // }
 
         stage('Docker Build & Push') {
             steps {

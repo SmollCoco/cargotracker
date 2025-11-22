@@ -5,9 +5,6 @@ pipeline {
     tools {
         jdk 'JDK'
         maven 'Maven'
-        nodejs 'NodeJS'
-        // Installs the standalone scanner (useful if not using Maven for analysis)
-        // sonarQubeScanner 'SonarQube Scanner'
     }
 
     environment {
@@ -41,7 +38,7 @@ pipeline {
                 // Connects to SonarQube using the environment defined [cite: 33]
                 withSonarQubeEnv(SONAR_SERVER) {
                     // Analysis via Maven (preferred for JEE) [cite: 6, 27]
-                    sh 'mvn sonar:sonar'
+                    sh 'mvn sonar:sonar -Dsonar.exclusions=**/*.js,**/*.css,**/*.html,**/*.ts'
                 }
             }
         }

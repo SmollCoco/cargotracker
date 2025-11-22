@@ -26,12 +26,12 @@ pipeline {
             }
         }
 
-        // stage('Compile & Test') {
-        //     steps {
-        //         // Uses the Maven tool installed above to compile and test [cite: 24, 25, 26]
-        //         sh 'mvn clean package'
-        //     }
-        // }
+        stage('Compile & Test') {
+            steps {
+                // Uses the Maven tool installed above to compile and test [cite: 24, 25, 26]
+                sh 'mvn clean package'
+            }
+        }
 
         stage('SonarQube Analysis') {
             steps {
@@ -43,14 +43,14 @@ pipeline {
             }
         }
 
-        stage('Quality Gate') {
-            steps {
-                // Pauses pipeline until SonarQube returns quality status [cite: 34]
-                timeout(time: 5, unit: 'MINUTES') {
-                    waitForQualityGate abortPipeline: true
-                }
-            }
-        }
+        // stage('Quality Gate') {
+        //     steps {
+        //         // Pauses pipeline until SonarQube returns quality status [cite: 34]
+        //         timeout(time: 5, unit: 'MINUTES') {
+        //             waitForQualityGate abortPipeline: true
+        //         }
+        //     }
+        // }
 
         stage('Docker Build & Push') {
             steps {

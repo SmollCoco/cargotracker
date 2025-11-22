@@ -1,34 +1,53 @@
 pipeline {
     agent any
 
+    // 1. Define tools to install automatically based on UI names
     tools {
-        maven 'Maven'
         jdk 'JDK'
+        maven 'Maven'
+    }
+
+    environment {
+        // Your SonarQube server name defined in 'System' settings
+        SONAR_SERVER = 'SonarQube'
+        // Token secret ID from Credentials in Jenkins
+        SONAR_TOKEN = credentials('cargotracker-token-sonarqube')
+        // Your Docker image name
+        DOCKER_IMAGE = 'smollcoco/cargotracker-app:latest'
+        // The ID of the username/password credential you created in Jenkins for Docker Hub
+        DOCKER_CREDS_ID = 'docker-hub-creds'
     }
 
     stages {
-        stage('Clone') {
+        stage('Checkout') {
             steps {
-                git url: 'https://github.com/SmollCoco/cargotracker'
+                // Clones the repo [cite: 4, 23]
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Compile & Test') {
             steps {
-                sh 'mvn clean install'
-            }
-        }
-
-        stage('Test') {
-            steps {
-                sh 'mvn test'
+                // Uses the Maven tool installed above to compile and test [cite: 24, 25, 26]
+                sh 'mvn clean package'
             }
         }
 
         stage('SonarQube Analysis') {
             steps {
-                withSonarQubeEnv('SonarServer') {
-                    sh "mvn sonar:sonar -Dsonar.projectKey=cargotracker"
+                // Connects to SonarQube using the environment defined [cite: 33]
+                withSonarQubeEnv(SONAR_SERVER) {
+                    // Analysis via Maven (preferred for JEE) [cite: 6, 27]
+                    sh 'mvn clean verify sonar:sonar -Dsonar.projectKey=cargotracker -Dsonar.host.url=http://sonarqube:9000 -Dsonar.login=sqp_4ef13611c4f4f72c1894c5d31cf30c375d986c3a'
+                }
+            }
+        }
+
+        stage('Quality Gate') {
+            steps {
+                // Pauses pipeline until SonarQube returns quality status [cite: 34]
+                timeout(time: 5, unit: 'MINUTES') {
+                    waitForQualityGate abortPipeline: true
                 }
             }
         }
@@ -47,6 +66,14 @@ pipeline {
                 }
             }
         }
+
+        // Optional: Stage for K8s Deployment would go here [cite: 8, 50]
+    }
+
+    post {
+        always {
+            // Clean up workspace to save disk space
+            cleanWs()
+        }
     }
 }
-

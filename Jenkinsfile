@@ -6,7 +6,7 @@ pipeline {
         jdk 'JDK'
         maven 'Maven'
         // Installs the standalone scanner (useful if not using Maven for analysis)
-        sonarQubeScanner 'SonarQube Scanner'
+        // sonarQubeScanner 'SonarQube Scanner'
     }
 
     environment {

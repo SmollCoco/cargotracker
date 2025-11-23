@@ -156,7 +156,7 @@
               <goal>prepare-agent</goal>
             </goals>
             <configuration>
-              <propertyName>surefire.argLine</propertyName>
+              <propertyName>argLine</propertyName>
             </configuration>
           </execution>
           <execution>

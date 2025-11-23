@@ -16,3 +16,6 @@ data
 cargo-tracker-test-data
 nbactions.xml
 .java-version
+*.backup
+*.*.backup
+prep.txt

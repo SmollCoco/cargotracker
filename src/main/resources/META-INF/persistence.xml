@@ -3,6 +3,7 @@
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="3.0"
              xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
 
+  <jta-data-source>java:global/jdbc/CargoTrackerDatabase</jta-data-source>
   <persistence-unit name="CargoTrackerUnit" transaction-type="JTA">
     <properties>
       <property name="jakarta.persistence.jdbc.driver" value="org.postgresql.Driver" />

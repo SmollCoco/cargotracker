@@ -2,6 +2,19 @@
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="6.0"
   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+  <data-source>
+    <name>java:global/jdbc/CargoTrackerDatabase</name>
+    <class-name>org.postgresql.ds.PGConnectionPoolDataSource</class-name>
+    <server-name>postgres-service</server-name>
+    <port-number>5432</port-number>
+    <database-name>cargotracker</database-name>
+    <user>cargotracker</user>
+    <password>password</password>
+    <property>
+      <name>fish.payara.is-connection-validation-required</name>
+      <value>true</value>
+    </property>
+  </data-source>
   <!-- Overriding system level defaults is a decent usage of XML. -->
   <context-param>
     <param-name>jakarta.faces.PROJECT_STAGE</param-name>

@@ -12,8 +12,8 @@ RUN chown payara:payara /opt/payara/appserver/glassfish/domains/domain1/lib/post
     && chmod 644 /opt/payara/appserver/glassfish/domains/domain1/lib/postgresql.jar
 
 # 4. Copy and fix permissions for Config Script
-COPY post-boot-commands.asadmin /opt/payara/config/post-boot-commands.asadmin
-RUN chown payara:payara /opt/payara/config/post-boot-commands.asadmin
+# COPY post-boot-commands.asadmin /opt/payara/config/post-boot-commands.asadmin
+# RUN chown payara:payara /opt/payara/config/post-boot-commands.asadmin
 
 # 5. Copy and fix permissions for App (ROOT.war)
 COPY target/cargo-tracker.war /opt/payara/deployments/ROOT.war

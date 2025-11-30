@@ -7,4 +7,4 @@ ADD https://jdbc.postgresql.org/download/postgresql-42.7.2.jar /opt/payara/appse
 COPY target/cargo-tracker.war /opt/payara/deployments/ROOT.war
 
 # Copy Payara post-boot commands if needed (optional)
-COPY post-boot-commands.asadmin /opt/payara/config/
+# COPY post-boot-commands.asadmin /opt/payara/config/

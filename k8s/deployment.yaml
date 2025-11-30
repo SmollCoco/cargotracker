@@ -15,5 +15,6 @@ spec:
       containers:
         - name: cargotracker
           image: smollcoco/cargotracker-app:latest
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080

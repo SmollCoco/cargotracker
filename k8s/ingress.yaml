@@ -4,7 +4,7 @@ metadata:
   name: cargotracker-ingress
   annotations:
     kubernetes.io/ingress.class: "nginx"
-    # nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/app-root: /cargo-tracker
 spec:
   rules:
   - host: cargotracker.local

@@ -1,0 +1,4 @@
+Do you trust the above certificate [y|N] -->y
+[?1h=[?2004h>....[?1h=[?2004h>....Authentication failed for user: admin
+(Usually, this means invalid user name and/or password)
+Command deploy failed.

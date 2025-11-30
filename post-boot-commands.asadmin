@@ -1,0 +1,5 @@
+# 1. Create the Connection Pool (Standard Postgres Configuration)
+create-jdbc-connection-pool --datasourceclassname org.postgresql.ds.PGConnectionPoolDataSource --restype javax.sql.ConnectionPoolDataSource --property portNumber=5432:password=password:user=cargotracker:serverName=postgres-service:databaseName=cargotracker CargoTrackerPool
+
+# 2. Create the JDBC Resource (Linking the pool to a JNDI name)
+create-jdbc-resource --connectionpoolid CargoTrackerPool jdbc/CargoTrackerDatabase

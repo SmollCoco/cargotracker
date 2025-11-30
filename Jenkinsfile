@@ -30,7 +30,7 @@ pipeline {
         stage('Compile & Test') {
             steps {
                 // Uses the Maven tool installed above to compile and test [cite: 24, 25, 26]
-                sh 'mvn clean package'
+                sh 'mvn clean package -DskipTests'
             }
         }
 

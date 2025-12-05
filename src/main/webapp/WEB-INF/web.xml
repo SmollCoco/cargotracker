@@ -2,19 +2,6 @@
 <web-app xmlns="https://jakarta.ee/xml/ns/jakartaee"
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="6.0"
   xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
-  <data-source>
-    <name>java:global/jdbc/CargoTrackerDatabase</name>
-    <class-name>org.postgresql.ds.PGConnectionPoolDataSource</class-name>
-    <server-name>postgres-service</server-name>
-    <port-number>5432</port-number>
-    <database-name>cargotracker</database-name>
-    <user>cargotracker</user>
-    <password>password</password>
-    <property>
-      <name>fish.payara.is-connection-validation-required</name>
-      <value>true</value>
-    </property>
-  </data-source>
   <!-- Overriding system level defaults is a decent usage of XML. -->
   <context-param>
     <param-name>jakarta.faces.PROJECT_STAGE</param-name>
@@ -74,15 +61,6 @@
   </env-entry>
   <!-- Defining these at the application server level instead of here can be more 
     operations friendly and help make deployment even faster. -->
-  <data-source>
-    <name>java:app/jdbc/CargoTrackerDatabase</name>
-    <class-name>${db.driverClass}</class-name>
-    <url>${db.jdbcUrl}</url>
-    <user>${db.user}</user>
-    <password>${db.password}</password>
-    <max-pool-size>32</max-pool-size>
-    <min-pool-size>2</min-pool-size>
-  </data-source>
   <jms-destination>
     <name>java:app/jms/CargoHandledQueue</name>
     <interface-name>jakarta.jms.Queue</interface-name>

@@ -6,7 +6,6 @@ pipeline {
         jdk 'JDK'
         maven 'Maven'
         dockerTool 'Docker'
-        kubernetesTool 'kubectl'
     }
 
     environment {

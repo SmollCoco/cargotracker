@@ -63,7 +63,7 @@ pipeline {
             steps {
                 // This injects the 'minikube-kubeconfig' credential file 
                 // into a temporary variable KUBECONFIG for these commands
-                withKubeConfig([credentialsId: 'minikube-kubeconfig']) {
+                withKubeConfig([credentialsId: 'minikube-config']) {
                     script {
                         // 1. Debug: Check connectivity
                         sh "kubectl get nodes" 

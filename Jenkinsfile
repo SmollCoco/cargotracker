@@ -53,7 +53,9 @@ pipeline {
                     // 2. Securely Login and Push
                     withCredentials([usernamePassword(credentialsId: DOCKER_CREDS_ID, usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                         sh "docker login -u ${DOCKER_USER} -p ${DOCKER_PASS}"
+                        retry(3) {
                         sh "docker push ${DOCKER_IMAGE}"
+                        }
                     }
                 }
             }

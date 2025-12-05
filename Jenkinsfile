@@ -6,6 +6,7 @@ pipeline {
         jdk 'JDK'
         maven 'Maven'
         dockerTool 'Docker'
+        kubernetesTool 'kubectl'
     }
 
     environment {
@@ -59,7 +60,24 @@ pipeline {
             }
         }
 
-        // Optional: Stage for K8s Deployment would go here [cite: 8, 50]
+        stage('Deploy to Kubernetes') {
+            steps {
+                // This injects the 'minikube-kubeconfig' credential file 
+                // into a temporary variable KUBECONFIG for these commands
+                withKubeConfig([credentialsId: 'minikube-kubeconfig']) {
+                    script {
+                        // 1. Debug: Check connectivity
+                        sh "kubectl get nodes" 
+                        
+                        // 2. Deploy
+                        sh "kubectl apply -f k8s/"
+                        
+                        // 3. Restart to pull new image
+                        sh "kubectl rollout restart deployment/cargotracker"
+                    }
+                }
+            }
+        }
     }
 
     post {

@@ -15,7 +15,7 @@ pipeline {
         SONAR_TOKEN = credentials('cargotracker-token-sonarqube')
         // Your Docker image name
         DOCKER_IMAGE = 'smollcoco/cargotracker-app:latest'
-        // The ID of the username/password credential you created in Jenkins for Docker Hub
+        // ID of the username/password credential in Jenkins
         DOCKER_CREDS_ID = 'docker-hub-creds'
     }
 
